@@ -30,7 +30,7 @@ class LinkedList {
 
   push(value) {
     const node = new LinkedListNode(value);
-    if (!this.tail) {
+    if (this.isEmpty()) {
       this.head = node;
       this.tail = this.head;
     } else {
@@ -39,6 +39,28 @@ class LinkedList {
     }
     this.length++;
     return value;
+  }
+
+  pop() {
+    if (this.isEmpty()) {
+      return undefined;
+    } else {
+      let current = this.head;
+      let previous = null;
+      while (current.next != null) {
+        previous = current;
+        current = current.next;
+      }
+      if (previous == null) {
+        this.head = null;
+        this.tail = null;
+      } else {
+        this.tail = previous;
+        this.tail.next = null;
+      }
+      this.length--;
+      return current.value;
+    }
   }
 }
 
