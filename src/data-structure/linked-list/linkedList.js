@@ -184,7 +184,21 @@ class LinkedList {
     });
     return this;
   }
-  //TODO Reverse
+
+  reverse() {
+    let previous = null;
+    let current = this.head;
+    let next = null;
+    while (current) {
+      next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
+    }
+    this.tail = this.head;
+    this.head = previous;
+    return this;
+  }
 }
 
 export default LinkedList;

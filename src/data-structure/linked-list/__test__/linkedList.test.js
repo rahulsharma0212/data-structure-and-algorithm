@@ -150,4 +150,14 @@ describe("LinkedList", () => {
     expect(llFromArray).toBeInstanceOf(LinkedList);
     expect(llFromArray.toString()).toBe("1,2,3,4,5");
   });
+
+  it("REVERSE || should return linked list in reverse order", () => {
+    const linkedList = new LinkedList();
+    const llFromArray = linkedList.fromArray([1, 2, 3, 4, 5]);
+    expect(llFromArray).toBeInstanceOf(LinkedList);
+    expect(llFromArray.toString()).toBe("1,2,3,4,5");
+    const revLLFromArray = linkedList.reverse();
+    expect(revLLFromArray).toBeInstanceOf(LinkedList);
+    expect(llFromArray.toString()).toBe("5,4,3,2,1");
+  });
 });
