@@ -3,6 +3,7 @@ import {
   check_for_target,
   combine,
   isSubsequence,
+  reverseString,
   sortedSquares
 } from "../two-pointers";
 
@@ -31,6 +32,23 @@ describe("Two pointer", () => {
   it("isSubsequence", () => {
     expect(isSubsequence("abc", "ahbgdc")).toBeTruthy();
     expect(isSubsequence("abcd", "ahbgdc")).toBeFalsy();
+  });
+  it("reverseString", () => {
+    expect(reverseString(["r", "a", "h", "u", "l"])).toEqual([
+      "l",
+      "u",
+      "h",
+      "a",
+      "r",
+    ]);
+    expect(reverseString(["s", "h", "a", "r", "m", "a"])).toEqual([
+      "a",
+      "m",
+      "r",
+      "a",
+      "h",
+      "s",
+    ]);
   });
 
   it("sortedSquares", () => {

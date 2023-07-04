@@ -89,6 +89,26 @@ function isSubsequence(subStr, string) {
   }
   return i === subStr.length;
 }
+
+/**
+ * Reverses a given string.
+ *
+ * @param {string} string - The string to be reversed.
+ * @return {string} The reversed string.
+ */
+function reverseString(string) {
+  let left = 0,
+    right = string.length - 1;
+  while (left < right) {
+    let temp = string[left];
+    string[left] = string[right];
+    string[right] = temp;
+    left++;
+    right--;
+  }
+  return string;
+}
+
 /**
  * Calculates the squares of the elements in the given sorted array and returns them in sorted order.
  *
@@ -113,4 +133,11 @@ function sortedSquares(arr){
   return output;
 }
 
-export { check_if_palindrome, check_for_target, combine, isSubsequence,sortedSquares };
+export {
+  check_if_palindrome,
+  check_for_target,
+  combine,
+  isSubsequence,
+  reverseString,
+  sortedSquares
+};
