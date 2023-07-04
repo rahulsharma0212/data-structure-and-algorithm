@@ -89,5 +89,28 @@ function isSubsequence(subStr, string) {
   }
   return i === subStr.length;
 }
+/**
+ * Calculates the squares of the elements in the given sorted array and returns them in sorted order.
+ *
+ * @param {Array} arr - The sorted array of numbers.
+ * @return {Array} The sorted array of squared numbers.
+ */
+function sortedSquares(arr){
+  let left = 0;
+  let right = arr.length-1;
+  let index=right;
+  let output=[];
+  while(index>=0){
+    if(Math.abs(arr[left])>Math.abs(arr[right])){
+      output[index]=arr[left]*arr[left];
+      left++;
+    }else{
+      output[index]=arr[right]*arr[right];
+      right--;
+    }
+    index--;
+  }
+  return output;
+}
 
-export { check_if_palindrome, check_for_target, combine, isSubsequence };
+export { check_if_palindrome, check_for_target, combine, isSubsequence,sortedSquares };

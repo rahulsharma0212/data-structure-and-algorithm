@@ -3,6 +3,7 @@ import {
   check_for_target,
   combine,
   isSubsequence,
+  sortedSquares
 } from "../two-pointers";
 
 describe("Two pointer", () => {
@@ -30,5 +31,10 @@ describe("Two pointer", () => {
   it("isSubsequence", () => {
     expect(isSubsequence("abc", "ahbgdc")).toBeTruthy();
     expect(isSubsequence("abcd", "ahbgdc")).toBeFalsy();
+  });
+
+  it("sortedSquares", () => {
+    expect(sortedSquares([-4,-1,0,3,10])).toEqual([0,1,9,16,100]);
+    expect(sortedSquares([-7,-3,2,3,11])).toEqual([4,9,9,49,121]);
   });
 });
