@@ -1,5 +1,6 @@
 {
   "editor.fontSize": 14,
+  "editor.formatOnSave": true,
   "jest.autoRun": {
     "watch": false,
     "all-tests": false

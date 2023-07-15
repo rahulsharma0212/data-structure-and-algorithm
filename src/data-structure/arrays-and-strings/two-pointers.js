@@ -115,22 +115,162 @@ function reverseString(string) {
  * @param {Array} arr - The sorted array of numbers.
  * @return {Array} The sorted array of squared numbers.
  */
-function sortedSquares(arr){
+function sortedSquares(arr) {
   let left = 0;
-  let right = arr.length-1;
-  let index=right;
-  let output=[];
-  while(index>=0){
-    if(Math.abs(arr[left])>Math.abs(arr[right])){
-      output[index]=arr[left]*arr[left];
+  let right = arr.length - 1;
+  let index = right;
+  let output = [];
+  while (index >= 0) {
+    if (Math.abs(arr[left]) > Math.abs(arr[right])) {
+      output[index] = arr[left] * arr[left];
       left++;
-    }else{
-      output[index]=arr[right]*arr[right];
+    } else {
+      output[index] = arr[right] * arr[right];
       right--;
     }
     index--;
   }
   return output;
+}
+
+class TwoPointer {
+  swap(array, left_pointer, right_pointer) {
+    let temp = array[left_pointer];
+    array[left_pointer] = array[right_pointer];
+    array[right_pointer] = temp;
+  }
+
+  reverse_array(array) {
+    if (array.length <= 1) {
+      return array;
+    }
+    let left_pointer = 0;
+    let right_pointer = array.length - 1;
+    while (left_pointer < right_pointer) {
+      this.swap(array, left_pointer, right_pointer);
+      left_pointer++;
+      right_pointer--;
+    }
+    return array;
+  }
+
+  remove_duplicates_from_sorted_array(array) {
+    if (array.length <= 1) {
+      return array;
+    }
+    let left_pointer = 0;
+    let next_pointer = left_pointer + 1;
+    while (left_pointer < array.length && next_pointer < array.length) {
+      if (array[left_pointer] != array[next_pointer]) {
+        left_pointer++;
+        array[left_pointer] = array[next_pointer];
+      }
+      next_pointer++;
+    }
+    return array.slice(0, left_pointer + 1);
+  }
+
+  two_sum_for_sorted_array(array, target) {
+    let left_pointer = 0;
+    let right_pointer = array.length - 1;
+    while (left_pointer < right_pointer) {
+      if (array[left_pointer] + array[right_pointer] < target) {
+        left_pointer++;
+      } else if (array[left_pointer] + array[right_pointer] > target) {
+        right_pointer--;
+      } else {
+        return [left_pointer, right_pointer];
+      }
+    }
+  }
+
+  reverse_Word_in_a_string(string) {
+    let str_arr = string.split(" ");
+    let left_pointer = 0;
+    let right_pointer = str_arr.length - 1;
+    while (left_pointer < right_pointer) {
+      let temp = str_arr[left_pointer];
+      str_arr[left_pointer] = str_arr[right_pointer];
+      str_arr[right_pointer] = temp;
+      left_pointer++;
+      right_pointer--;
+    }
+    return str_arr.join(" ");
+  }
+
+  reverse_array_between_pointer(array, left_pointer, right_pointer) {
+    while (left_pointer < right_pointer) {
+      let temp = array[left_pointer];
+      array[left_pointer] = array[right_pointer];
+      array[right_pointer] = temp;
+      left_pointer++;
+      right_pointer--;
+    }
+    return array;
+  }
+  rotate_array(array, k) {
+    const length = array.length;
+    k = k % length;
+    this.reverse_array_between_pointer(array, 0, length - 1);
+    this.reverse_array_between_pointer(array, 0, k - 1);
+    this.reverse_array_between_pointer(array, k, length - 1);
+    return array;
+  }
+
+  closest_pair_in_sorted_array(array, sum) {
+    let left_pointer = 0;
+    let right_pointer = array.length - 1;
+    let closest = Number.MAX_VALUE;
+    let answer = null;
+    while (left_pointer < right_pointer) {
+      if (
+        Math.abs(array[left_pointer] + array[right_pointer] - sum) < closest
+      ) {
+        closest = Math.abs(array[left_pointer] + array[right_pointer] - sum);
+        answer = [array[left_pointer], array[right_pointer]];
+      }
+      if (array[left_pointer] + array[right_pointer] < sum) {
+        left_pointer++;
+      } else {
+        right_pointer--;
+      }
+    }
+    return answer;
+  }
+
+  closest_pair_from_two_sorted_array(arr1, arr2, k) {
+    let left_pointer = 0;
+    let right_pointer = arr2.length - 1;
+    let closest = Number.MAX_SAFE_INTEGER;
+    let answer = [arr1[left_pointer], arr2[right_pointer]];
+    while (left_pointer < arr1.length && right_pointer >= 0) {
+      if (Math.abs(arr1[left_pointer] + arr2[right_pointer] - k) <= closest) {
+        answer = [arr1[left_pointer], arr2[right_pointer]];
+        closest = Math.abs(arr1[left_pointer] + arr2[right_pointer] - k);
+      }
+      if (arr1[left_pointer] + arr2[right_pointer] < k) {
+        left_pointer++;
+      } else {
+        right_pointer--;
+      }
+    }
+    return answer;
+  }
+
+  product_of_array_except_self(arr) {
+    let output = new Array(arr.length);
+    let temp = 1;
+    for (let i = 0; i < arr.length; i++) {
+      output[i] = temp;
+      temp *= arr[i];
+    }
+    temp = 1;
+    for (let i = arr.length - 1; i >= 0; i--) {
+      output[i] *= temp;
+      temp *= arr[i];
+    }
+    return output;
+  }
 }
 
 export {
@@ -139,5 +279,6 @@ export {
   combine,
   isSubsequence,
   reverseString,
-  sortedSquares
+  sortedSquares,
+  TwoPointer,
 };
